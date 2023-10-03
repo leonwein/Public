@@ -1,0 +1,194 @@
+---
+title: "3080Project"
+author: "Leon Weingartner"
+date: "5/1/2021"
+output: html_document
+---
+
+
+
+
+
+
+
+
+
+
+```{r,tidy=TRUE}
+#Correlation plot against every pair of variables
+
+setwd("C:/Users/leonw/OneDrive/Desktop/Math 3800 project")
+happinessfile <- "HappinessRegressions.csv"
+happinessData <- read.csv(happinessfile)
+
+
+library(corrplot) 
+col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA")) #setup color palette for plot
+X <- cor(subset(happinessData, select = -c(Overall.rank, Country.or.region, Continent))) #create a subset of all columns in the data set except non-quantifiable ones
+corrplot(X, method = "color", col = col(200), type = "upper", number.cex = .7, addCoef.col = "black", tl.col = "black", tl.srt = 90, sig.level = 0.01, insig = "blank", diag = FALSE) #plot correlations
+```
+
+```{r,tidy=TRUE}
+#distribution of score
+setwd("C:/Users/leonw/OneDrive/Desktop/Math 3800 project")
+happinessfile <- "HappinessRegressions.csv"
+happinessData <- read.csv(happinessfile)
+
+#plot distribution of happiness scores using histogram
+x<- happinessData$Score
+h<-hist(x,breaks = 10, col = "steelblue", xlab = "Happiness Score", ylab = "Count", main = "Happiness Score with Normal Curve")
+
+#draw normal curve with same mean and sd. 
+xfit<-seq(min(x),max(x),length=40)
+yfit<-dnorm(xfit,mean=mean(x),sd=sd(x))
+yfit <- yfit*diff(h$mids[1:2])*length(x)
+lines(xfit, yfit, col="blue", lwd=2)
+
+#qq plot
+qqnorm(happinessData$Score, pch = 1, frame = FALSE)
+qqline(happinessData$Score, col = "red", lwd = 2)
+summary(happinessData$Score)
+
+
+
+```
+
+```{r,tidy=TRUE}
+setwd("C:/Users/leonw/OneDrive/Desktop/Math 3800 project")
+happinessfile <- "HappinessRegressions.csv"
+happinessData <- read.csv(happinessfile)
+
+
+#freedom to make life choices
+
+#simple regression line
+summary(happinessData$Freedom.to.make.life.choices)
+summary(lm(Score~Freedom.to.make.life.choices, happinessData))
+plot(Score~Freedom.to.make.life.choices, happinessData, pch = 16)
+abline(lm(Score~Freedom.to.make.life.choices, happinessData), col = "red")
+
+#distribution of Freedom.to.make.life.choices
+x<- happinessData$Freedom.to.make.life.choices
+h<-hist(x,breaks = 10, col = "steelblue", xlab = "Freedom.to.make.life.choices", ylab = "Count", main = "Freedom to Make Life Choices Distribution")
+
+#Plot residuals 
+score.lm = lm(Score~Freedom.to.make.life.choices, happinessData)
+score.res = resid(score.lm)
+plot(happinessData$Freedom.to.make.life.choices, score.res, ylab = "Residuals", xlab = "Freedom to Make Life Choices", main = "Happiness~Freedom to Make Life Choices Residuals")
+abline(0,0)
+
+
+
+#Healthy Life Expectancy
+
+#simple regression line
+summary(happinessData$Healthy.life.expectancy)
+summary(lm(Score~Healthy.life.expectancy, happinessData))
+plot(Score~Healthy.life.expectancy, happinessData, pch = 16)
+abline(lm(Score~Healthy.life.expectancy, happinessData), col = "red")
+
+#distribution of Healthy.life.expectancy
+x<- happinessData$Healthy.life.expectancy
+h<-hist(x,breaks = 10, col = "steelblue", xlab = "Healthy.life.expectancy", ylab = "Count", main = "Healthy Life Expectancy Distribution")
+
+#Plot residuals
+score.lm = lm(Score~Healthy.life.expectancy, happinessData)
+score.res = resid(score.lm)
+plot(happinessData$Healthy.life.expectancy, score.res, ylab = "Residuals", xlab = "Healthy Life Expectancy", main = "Happiness~Healthy Life Expectancy Residuals")
+abline(0,0)
+
+
+
+#Social Support
+
+#simple regression line
+summary(happinessData$Social.support)
+summary(lm(Score~Social.support, happinessData))
+plot(Score~Social.support, happinessData, pch = 16)
+abline(lm(Score~Social.support, happinessData), col = "red")
+
+#distribution of Social.support
+x<- happinessData$Social.support
+h<-hist(x,breaks = 10, col = "steelblue", xlab = "Social.support", ylab = "Count", main = "Social Support Distribution")
+
+#Plot residuals
+score.lm = lm(Score~Social.support, happinessData)
+score.res = resid(score.lm)
+plot(happinessData$Social.support, score.res, ylab = "Residuals", xlab = "Social Support", main = "Happiness~Social Support Residuals")
+abline(0,0)
+
+
+
+
+```
+
+```{r,tidy=TRUE}
+setwd("C:/Users/leonw/OneDrive/Desktop/Math 3800 project")
+happinessfile <- "HappinessRegressions.csv"
+happinessData <- read.csv(happinessfile)
+
+
+#Experimental model with variables that have low correlation
+model1 <- lm(formula = Score ~ GDP.per.capita + Perceptions.of.corruption + Generosity, data = happinessData)
+plot(model1)
+summary(model1)
+
+#summary of final model using 4 significant variables
+model2 <- lm(formula = Score ~ GDP.per.capita + Social.support + Healthy.life.expectancy + Freedom.to.make.life.choices  , data = happinessData)
+plot(model2)
+summary(model2)
+
+#data of the country suriname from 2015
+d <- data.frame(GDP.per.capita = c(.99534), Social.support = c(.972), Healthy.life.expectancy = c(.6082), Freedom.to.make.life.choices = c(.5966))
+#predict happiness of suriname and find prediction interval
+predict(model2, newdata = d, interval = "predict")
+
+
+#summary of model including all 6 variables
+model3 <- lm(formula = Score ~ GDP.per.capita + Social.support + Healthy.life.expectancy + Freedom.to.make.life.choices + Generosity + Perceptions.of.corruption  , data = happinessData)
+plot(model3)
+summary(model3)
+
+```
+
+
+
+```{r,tidy=TRUE}
+setwd("C:/Users/leonw/OneDrive/Desktop/Math 3800 project")
+happinessfile <- "HappinessRegressions.csv"
+happinessData <- read.csv(happinessfile)
+
+#visualize count of countries by continent
+x<- happinessData$Continent
+barplot(table(x))
+
+#happiness distribution of countries in Europe
+Europe <- subset(happinessData, Continent == "Europe")
+h<-hist(Europe$Score,xlim = c(2,9),breaks = seq(2, 9), col = "steelblue", xlab = "Happiness Score", ylab = "Count", main = "Happiness Score in Europe")
+print("Europe")
+summary(Europe$Score)
+
+#happiness distribution of countries in Asia
+Asia <- subset(happinessData, Continent == "Asia")
+h<-hist(Asia$Score,xlim = c(2,9),breaks = seq(2, 9), col = "steelblue", xlab = "Happiness Score", ylab = "Count", main = "Happiness Score in Asia")
+print("Asia")
+summary(Asia$Score)
+
+#happiness distribution of countries in Africa
+Africa <- subset(happinessData, Continent == "Africa")
+h<-hist(Africa$Score,xlim = c(2,9),breaks = seq(2, 9), col = "steelblue", xlab = "Happiness Score", ylab = "Count", main = "Happiness Score in Africa")
+print("Africa")
+summary(Africa$Score)
+
+#happiness distribution of countries in North America
+NAm <- subset(happinessData, Continent == "North America")
+h<-hist(NAm$Score,xlim = c(2,9),breaks = seq(2, 9), col = "steelblue", xlab = "Happiness Score", ylab = "Count", main = "Happiness Score in North America")
+print("North America")
+summary(NAm$Score)
+
+#happiness distribution of countries in South America
+SAm <- subset(happinessData, Continent == "South America")
+h<-hist(SAm$Score,xlim = c(2,9),breaks = seq(2, 9), col = "steelblue", xlab = "Happiness Score", ylab = "Count", main = "Happiness Score in South America")
+print("South America")
+summary(SAm$Score)
+```
