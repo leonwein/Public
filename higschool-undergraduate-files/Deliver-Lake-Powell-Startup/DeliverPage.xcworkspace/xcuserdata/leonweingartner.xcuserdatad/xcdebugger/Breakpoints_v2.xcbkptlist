@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "809728CD-F359-4405-A3C2-B6FA3BAB16AB"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C5133C7-8356-49AA-87C5-29531B3F8600"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeliverPage/RestaurantCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "RestaurantCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "4C5133C7-8356-49AA-87C5-29531B3F8600 - dd31b16f12f13d71"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeliverPage.RestaurantCell.__deallocating_deinit"
+                  moduleName = "DeliverPage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leonweingartner/Documents/GitHub/LakePowellDelivery/DeliverPage/RestaurantCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "4C5133C7-8356-49AA-87C5-29531B3F8600 - 5f1b1cfa3cb82ff0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeliverPage.RestaurantCell.__allocating_init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; DeliverPage.RestaurantCell"
+                  moduleName = "DeliverPage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leonweingartner/Documents/GitHub/LakePowellDelivery/DeliverPage/RestaurantCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "4C5133C7-8356-49AA-87C5-29531B3F8600 - c33d18e53c18451"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeliverPage.RestaurantCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; DeliverPage.RestaurantCell"
+                  moduleName = "DeliverPage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leonweingartner/Documents/GitHub/LakePowellDelivery/DeliverPage/RestaurantCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "297">
+               </Location>
+               <Location
+                  uuid = "4C5133C7-8356-49AA-87C5-29531B3F8600 - 146d923b932a62d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeliverPage.RestaurantCell.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;DeliverPage.RestaurantCell&gt;"
+                  moduleName = "DeliverPage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leonweingartner/Documents/GitHub/LakePowellDelivery/DeliverPage/RestaurantCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "4C5133C7-8356-49AA-87C5-29531B3F8600 - f16bfbf3b5510e16"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeliverPage.RestaurantCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;DeliverPage.RestaurantCell&gt;"
+                  moduleName = "DeliverPage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leonweingartner/Documents/GitHub/LakePowellDelivery/DeliverPage/RestaurantCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "238">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

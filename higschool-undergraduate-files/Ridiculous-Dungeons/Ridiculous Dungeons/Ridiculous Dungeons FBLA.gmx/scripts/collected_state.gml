@@ -1,0 +1,1 @@
+global.collected = 0;
